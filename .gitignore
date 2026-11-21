@@ -1,0 +1,6 @@
+# editor and system leftovers only: nothing of the work is ignored
+.vscode/
+.history/
+*.swp
+.DS_Store
+Thumbs.db
