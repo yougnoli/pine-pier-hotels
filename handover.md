@@ -23,9 +23,6 @@ My queries are in `answers/day1` to `answers/day5`, one file for each of Eleanor
 
 ## The index and what it changed
 
-Table 'Worktable'. Scan count 0, logical reads 0, physical reads 0, page server reads 0, read-ahead reads 0, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
-Table 'Workfile'. Scan count 0, logical reads 0, physical reads 0, page server reads 0, read-ahead reads 0, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
-Table 'room_nights'. Scan count 1, logical reads 4469, physical reads 0, page server reads 0, read-ahead reads 0, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
-Table 'hotels'. Scan count 1, logical reads 2, physical reads 0, page server reads 0, read-ahead reads 0, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+Page reads before: 4471
 
 The monthly report filtered with `YEAR(stay_date) = 2026`, a function around the column, so SQL Server could not use an index and read every page of `room_nights`. I rewrote the filter as a range of dates, and created one covering index, `ix_room_nights_stay_date` on `stay_date`, including `hotel_id` and `price`: the report now reads the narrow index for 2026 only and no longer the whole table. The page reads fell by about **98%**.
