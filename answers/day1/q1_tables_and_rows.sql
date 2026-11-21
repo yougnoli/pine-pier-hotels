@@ -3,3 +3,6 @@
 -- The answer: table_name, row_count; 11 rows, by name.
 -- Write your query below and save it, then commit and push to main, then press Hand in.
 
+SELECT name, create_date
+FROM sys.tables
+ORDER BY name;
