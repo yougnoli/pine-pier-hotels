@@ -1,5 +1,6 @@
 -- Monthly report: the room nights and the revenue of each hotel, month by month, for 2026.
 -- Written years ago by somebody who has left. It works, but it takes forever.
+
 SELECT h.name AS hotel,
        MONTH(rn.stay_date) AS month,
        COUNT(*) AS nights,

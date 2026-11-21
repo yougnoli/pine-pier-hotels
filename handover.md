@@ -23,6 +23,6 @@ My queries are in `answers/day1` to `answers/day5`, one file for each of Eleanor
 
 ## The index and what it changed
 
-Page reads before: 4471
+Page reads before: 44981
 
 The monthly report filtered with `YEAR(stay_date) = 2026`, a function around the column, so SQL Server could not use an index and read every page of `room_nights`. I rewrote the filter as a range of dates, and created one covering index, `ix_room_nights_stay_date` on `stay_date`, including `hotel_id` and `price`: the report now reads the narrow index for 2026 only and no longer the whole table. The page reads fell by about **98%**.
